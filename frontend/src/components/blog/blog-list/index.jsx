@@ -7,14 +7,14 @@ export default class BlogList extends Component {
     posts : []
   }
   componentDidMount() {
-    fetch('/posts').then( r => r.json()).then(
-
+    fetch('/posts').then( r => r.json()).then( data =>
+        this.setState({ ...this.state , posts: data})
     )
   }
   render() {
     return (
-      <Row>
-        {posts.map((post) => (
+      <Row>{
+        this.state.posts.map((post) => (
           <Col md={4} style={{ marginBottom: 50 }}>
             <BlogItem key={post.title} {...post} />
           </Col>
